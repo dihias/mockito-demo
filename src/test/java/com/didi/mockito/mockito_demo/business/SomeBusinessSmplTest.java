@@ -3,21 +3,24 @@ package com.didi.mockito.mockito_demo.business;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class SomeBusinessSmplTest {
 
     @Test
     void findTheGreatestFromAllData_basic() {
-        DataServiceStub dataServiceStub = new DataServiceStub();
-        SomeBusinessSmpl someBusinessSmpl = new SomeBusinessSmpl(dataServiceStub);
-        int result = someBusinessSmpl.findTheGreatestFromAllData();
-        assertEquals(25,result);
+        DataService dataService= mock(DataService.class);
+        when(dataService.retreiveAllData()).thenReturn(new int[]{5,25,13});
+        SomeBusinessSmpl someBusinessSmpl = new SomeBusinessSmpl(dataService);
+        assertEquals(25, someBusinessSmpl.findTheGreatestFromAllData());
     }
-}
 
-class DataServiceStub implements DateService{
-    @Override
-    public int[] retreiveAllData() {
-        return new int[]{25,15,5};
+    @Test
+    void findTheGreatestFromAllData_OneValue() {
+        DataService dataService= mock(DataService.class);
+        when(dataService.retreiveAllData()).thenReturn(new int[]{13});
+        SomeBusinessSmpl someBusinessSmpl = new SomeBusinessSmpl(dataService);
+        assertEquals(13, someBusinessSmpl.findTheGreatestFromAllData());
     }
 }

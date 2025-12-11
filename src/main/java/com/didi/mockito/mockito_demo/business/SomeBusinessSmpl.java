@@ -1,14 +1,14 @@
 package com.didi.mockito.mockito_demo.business;
 
 public class SomeBusinessSmpl {
-    private DateService dateService;
+    private DataService dataService;
 
-    public SomeBusinessSmpl(DateService dateService) {
-        this.dateService = dateService;
+    public SomeBusinessSmpl(DataService dataService) {
+        this.dataService = dataService;
     }
 
     public int findTheGreatestFromAllData(){
-       int[] data= dateService.retreiveAllData();
+       int[] data= dataService.retreiveAllData();
        int greatestValue = Integer.MIN_VALUE;
        for(int value:data){
            if(value>greatestValue)
@@ -19,6 +19,3 @@ public class SomeBusinessSmpl {
     }
 }
 
-interface DateService{
-    int[] retreiveAllData();
-}

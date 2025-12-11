@@ -2,6 +2,11 @@ package com.didi.mockito.mockito_demo.business;
 
 public class SomeBusinessSmpl {
     private DateService dateService;
+
+    public SomeBusinessSmpl(DateService dateService) {
+        this.dateService = dateService;
+    }
+
     public int findTheGreatestFromAllData(){
        int[] data= dateService.retreiveAllData();
        int greatestValue = Integer.MIN_VALUE;
